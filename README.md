@@ -1,5 +1,5 @@
-# CSpid
+# CSPÎD
 
-CSpid is a bare-bones .NET P(roportional)-I(integral)-D(erivative) controller.
+CSPÎD (pronounced "speedy") is a C# PID (proportional-integral-derivative) controller.
 
-CSpid targets .NET Standard 2.0.
+CSPÎD targets .NET Standard 2.0.
