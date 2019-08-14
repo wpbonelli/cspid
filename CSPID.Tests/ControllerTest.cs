@@ -11,16 +11,16 @@ namespace CSPID.Tests
         public void Proportional()
         {
             int setPoint = 5,
-                errorMinimum = -5,
-                errorMaximum = 5,
-                controlMinimum = 0,
-                controlMaximum = 10;
+                minimumError = -5,
+                maximumError = 5,
+                minimumControl = 0,
+                maximumControl = 10;
             var controlValues = Enumerable.Range(0, 11);
             var controller = new Controller(
-                errorMinimum,
-                errorMaximum,
-                controlMinimum,
-                controlMaximum,
+                minimumError,
+                maximumError,
+                minimumControl,
+                maximumControl,
                 double.MaxValue)
             {
                 ProportionalGain = 1,
@@ -29,13 +29,13 @@ namespace CSPID.Tests
             };
 
             var expectedValues = Enumerable
-                .Range(controlMinimum, controlMaximum - controlMinimum + 1)
+                .Range(minimumControl, maximumControl - minimumControl + 1)
                 .Select(Convert.ToDouble)
                 .Reverse()
                 .ToList();
 
             var actualValues = Enumerable
-                .Range(controlMinimum, controlMaximum - controlMinimum + 1)
+                .Range(minimumControl, maximumControl - minimumControl + 1)
                 .Select(value => Math.Round(controller.Next(setPoint - value, 1000)))
                 .ToList();
 

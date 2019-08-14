@@ -6,10 +6,10 @@ CSPID (pronounced "speedy") is a C# PID (proportional-integral-derivative) contr
 
 ```csharp
 var controller = new Controller(
-    errorMinimum: -5,
-    errorMaximum: 5,
-    controlMinimum: 0,
-    controlMaximum: 10,
+    minimumError: -5,
+    maximumError: 5,
+    minimumControl: 0,
+    maximumControl: 10,
     maximumStep: 1)
 {
     ProportionalGain = 1,
