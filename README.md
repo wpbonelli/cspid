@@ -4,7 +4,7 @@ CSPID (pronounced "speedy") is a C# PID (proportional-integral-derivative) contr
 
 ## Usage
 
-```
+```csharp
 var controller = new Controller(
     errorMinimum: -5,
     errorMaximum: 5,
