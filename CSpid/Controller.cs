@@ -2,14 +2,14 @@
 
 namespace CSPID
 {
-    public class Controller
+    public class Controller : IController
     {
         private readonly Range<double> _unitRange = new Range<double>(-1, 1);
         private readonly Range<double> _errorRange;
         private readonly Range<double> _controlRange;
 
         private readonly object _lock = new object();
-        private readonly double _maxStep;
+        private readonly double _maximumStep;
 
         private double _integrator;
 
@@ -43,14 +43,14 @@ namespace CSPID
             double maximumError,
             double minimumControl,
             double maximumControl,
-            double maxStep)
+            double maximumStep)
         {
-            if (maxStep < 0)
-                throw new ArgumentOutOfRangeException($"Expected {nameof(maxStep)} to be greater than 0");
+            if (maximumStep < 0)
+                throw new ArgumentOutOfRangeException($"Expected {nameof(maximumStep)} to be greater than 0");
 
             _errorRange = new Range<double>(minimumError, maximumError);
             _controlRange = new Range<double>(minimumControl, maximumControl);
-            _maxStep = maxStep;
+            _maximumStep = maximumStep;
         }
 
         public double Next(double error, double elapsed)
@@ -66,7 +66,7 @@ namespace CSPID
 
                 control = (_proportionalGain * error + _integrator + _derivativeGain * ((error - _previousError) / elapsed))
                     .Clamp(_unitRange).Scale(_unitRange, _controlRange)
-                    .ClampToMaxStep(_previousControl, _maxStep);
+                    .ClampToMaximumStep(_previousControl, _maximumStep);
 
                 _previousControl = control;
                 _previousError = error;

@@ -27,13 +27,13 @@ namespace CSPID
             return value < range.Minimum ? range.Minimum : value > range.Maximum ? range.Maximum : value;
         }
 
-        internal static double ClampToMaxStep(this double current, double previous, double maxStep)
+        internal static double ClampToMaximumStep(this double current, double previous, double maximumStep)
         {
-            if (maxStep <= 0)
-                throw new ArgumentOutOfRangeException($"Expected {nameof(maxStep)} to be greater than 0");
+            if (maximumStep <= 0)
+                throw new ArgumentOutOfRangeException($"Expected {nameof(maximumStep)} to be greater than or equal to 0");
 
-            if (current - previous > maxStep) return previous + maxStep;
-            if (previous - current > maxStep) return previous - maxStep;
+            if (current - previous > maximumStep) return previous + maximumStep;
+            if (previous - current > maximumStep) return previous - maximumStep;
             return current;
         }
     }
