@@ -1,7 +1,7 @@
 ﻿using System;
 
 #pragma warning disable RECS0017 // Possible compare of value type with 'null'
-namespace CSpid
+namespace CSPID
 {
     public struct Range<T> where T : IComparable<T>
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CSpid
+namespace CSPID
 {
     internal static class Utilities
     {

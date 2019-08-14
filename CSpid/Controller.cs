@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CSpid
+namespace CSPID
 {
     public class Controller
     {

@@ -1,7 +1,7 @@
 ﻿using Xunit;
 using FluentAssertions;
 
-namespace CSpid.Tests
+namespace CSPID.Tests
 {
     public class RangeTest
     {
