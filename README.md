@@ -1,6 +1,6 @@
 # CSPID
 
-CSPID (pronounced "speedy") is a C# PID (proportional-integral-derivative) controller targeting .NET Standard 2.0.
+CSPID (pronounced "speedy") is a C# PID (proportional-integral-derivative) controller targeting .NET Standard 2.0. You can find it on Nuget.org [here](https://www.nuget.org/packages/CSPID/).
 
 ## Usage
 
