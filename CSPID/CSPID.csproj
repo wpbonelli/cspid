@@ -4,4 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="CSPID.nuspec" />
+  </ItemGroup>
 </Project>

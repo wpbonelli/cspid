@@ -4,15 +4,15 @@ namespace CSPID
 {
     public class Controller : IController
     {
+        private readonly object _lock = new object();
+
         private readonly Range<double> _unitRange = new Range<double>(-1, 1);
         private readonly Range<double> _errorRange;
         private readonly Range<double> _controlRange;
 
-        private readonly object _lock = new object();
         private readonly double _maximumStep;
 
         private double _integrator;
-
         private double _previousError;
         private double _previousControl;
 
@@ -61,11 +61,12 @@ namespace CSPID
             {
                 error = error.Clamp(_errorRange).Scale(_errorRange, _unitRange);
 
-                _integrator += _integralGain * error * elapsed;
-                _integrator = _integrator.Clamp(_controlRange);
+                _integrator = (_integrator + (_integralGain * error * elapsed))
+                    .Clamp(_controlRange);
 
                 control = (_proportionalGain * error + _integrator + _derivativeGain * ((error - _previousError) / elapsed))
-                    .Clamp(_unitRange).Scale(_unitRange, _controlRange)
+                    .Clamp(_unitRange)
+                    .Scale(_unitRange, _controlRange)
                     .ClampToMaximumStep(_previousControl, _maximumStep);
 
                 _previousControl = control;
