@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSpid", "CSpid\CSpid.csproj", "{7BFF3D56-1E4F-4DE6-88F3-2D5F70416F85}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSpid.Tests", "CSpid.Tests\CSpid.Tests.csproj", "{00227C39-630D-4114-838A-4ECBE219A5D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,5 +15,9 @@ Global
 		{7BFF3D56-1E4F-4DE6-88F3-2D5F70416F85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7BFF3D56-1E4F-4DE6-88F3-2D5F70416F85}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7BFF3D56-1E4F-4DE6-88F3-2D5F70416F85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00227C39-630D-4114-838A-4ECBE219A5D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00227C39-630D-4114-838A-4ECBE219A5D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00227C39-630D-4114-838A-4ECBE219A5D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00227C39-630D-4114-838A-4ECBE219A5D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

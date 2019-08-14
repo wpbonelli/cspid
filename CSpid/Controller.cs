@@ -64,7 +64,7 @@ namespace CSpid
                 _integrator += _integralGain * error * elapsed;
                 _integrator = _integrator.Clamp(_controlRange);
 
-                control = _proportionalGain * error + _integrator + _derivativeGain * ((error - _previousError) / elapsed)
+                control = (_proportionalGain * error + _integrator + _derivativeGain * ((error - _previousError) / elapsed))
                     .Clamp(_unitRange).Scale(_unitRange, _controlRange)
                     .ClampToMaxStep(_previousControl, _maxStep);
 
