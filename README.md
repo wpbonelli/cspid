@@ -36,9 +36,9 @@ controller = new PIDController(
     minimumError: -5,
     maximumError: 5,
     minimumControl: 0,
-    maximumControl: 10,
-    maximumStep: 1)
+    maximumControl: 10)
 {
+    MaximumStep = double.MaxValue,
     ProportionalGain = 1,
     IntegralGain = 1,
     DerivativeGain = 1
