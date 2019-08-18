@@ -3,12 +3,28 @@
 #pragma warning disable RECS0017 // Possible compare of value type with 'null'
 namespace CSPID
 {
+    /// <summary>
+    /// An inclusive range.
+    /// </summary>
     public struct Range<T> where T : IComparable<T>
     {
+        /// <summary>
+        /// Gets the minimum value.
+        /// </summary>
+        /// <value>The minimum value.</value>
         public T Minimum { get; }
 
+        /// <summary>
+        /// Gets the maximum value.
+        /// </summary>
+        /// <value>The maximum value.</value>
         public T Maximum { get; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:CSPID.Range`1"/> struct.
+        /// </summary>
+        /// <param name="minimum">The minimum value.</param>
+        /// <param name="maximum">The maximum value.</param>
         public Range(T minimum, T maximum)
         {
             if (minimum == null)
@@ -22,24 +38,6 @@ namespace CSPID
 
             Minimum = minimum;
             Maximum = maximum;
-        }
-
-        public bool Contains(T value)
-        {
-            if (value == null)
-                throw new ArgumentNullException(nameof(value));
-
-            return Minimum.CompareTo(value) <= 0 && value.CompareTo(Maximum) <= 0;
-        }
-
-        public bool Contains(Range<T> range)
-        {
-            return Contains(range.Minimum) && Contains(range.Maximum);
-        }
-
-        public bool IsContainedBy(Range<T> range)
-        {
-            return range.Contains(Minimum) && range.Contains(Maximum);
         }
     }
 }

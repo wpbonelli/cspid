@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <Compile Remove="UnitTest1.cs" />
+    <Compile Remove="RangeTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CSPID\CSPID.csproj" />

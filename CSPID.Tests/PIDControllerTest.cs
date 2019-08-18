@@ -5,51 +5,52 @@ using FluentAssertions;
 
 namespace CSPID.Tests
 {
-    public class ControllerTest
+    public class PIDControllerTest
     {
         [Fact]
-        public void Proportional()
+        public void ProportionalControl()
         {
             int setPoint = 5,
                 minimumError = -5,
                 maximumError = 5,
                 minimumControl = 0,
                 maximumControl = 10;
-            var controlValues = Enumerable.Range(0, 11);
-            var controller = new Controller(
+
+            var controller = new PIDController(
                 minimumError,
                 maximumError,
                 minimumControl,
-                maximumControl,
-                double.MaxValue)
+                maximumControl)
             {
                 ProportionalGain = 1,
                 IntegralGain = 0,
                 DerivativeGain = 0
             };
 
-            var expectedValues = Enumerable
+            var seed = Enumerable
                 .Range(minimumControl, maximumControl - minimumControl + 1)
+                .ToList();
+
+            var expected = seed
                 .Select(Convert.ToDouble)
                 .Reverse()
                 .ToList();
 
-            var actualValues = Enumerable
-                .Range(minimumControl, maximumControl - minimumControl + 1)
+            var actual = seed
                 .Select(value => Math.Round(controller.Next(setPoint - value, 1000)))
                 .ToList();
 
-            actualValues.Should().BeEquivalentTo(expectedValues);
+            actual.Should().BeEquivalentTo(expected);
         }
 
         [Fact(Skip = "TODO")]
-        public void ProportionalIntegral()
+        public void ProportionalIntegralControl()
         {
 
         }
 
         [Fact(Skip = "TODO")]
-        public void ProportionalIntegralDerivative()
+        public void ProportionalIntegralDerivativeControl()
         {
 
         }
