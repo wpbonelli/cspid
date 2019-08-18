@@ -23,9 +23,9 @@ You can also impose a `MaximumStep` (the largest permissible change between cont
 // let's make a controller
 var controller = new PIDController(
     errorRange: new Range<double>(-5, 5), // Range<T> models an inclusive range (soon to be obsolete with C#8!)
-    controlRange: new Range<double>(0, 10),
-    maximumStep: 1)
+    controlRange: new Range<double>(0, 10))
 {
+    MaximumStep = double.MaxValue,
     ProportionalGain = 1,
     IntegralGain = 1,
     DerivativeGain = 1
