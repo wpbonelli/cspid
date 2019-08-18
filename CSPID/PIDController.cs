@@ -13,15 +13,29 @@ namespace CSPID
         private readonly Range<double> _errorRange;
         private readonly Range<double> _controlRange;
 
-        private readonly double _maximumStep;
-
         private double _integrator;
         private double _previousError;
         private double _previousControl;
-
+        private double _maximumStep = double.MaxValue;
         private double _proportionalGain;
         private double _integralGain;
         private double _derivativeGain;
+
+        /// <summary>
+        /// Gets or sets the maximum control variable change per cycle.
+        /// </summary>
+        /// <value>The maximum control variable change per cycle.</value>
+        public double MaximumStep
+        {
+            get { return _maximumStep; }
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentOutOfRangeException($"Expected {nameof(value)} to be greater than or equal to 0");
+
+                lock (_lock) _maximumStep = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the proportional gain.
@@ -54,26 +68,34 @@ namespace CSPID
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="T:CSPID.PIDController"/> class.
+        /// </summary>
+        /// <param name="errorRange">The error range.</param>
+        /// <param name="controlRange">The control range.</param>
+        public PIDController(
+            Range<double> errorRange,
+            Range<double> controlRange) : this(
+                errorRange.Minimum,
+                errorRange.Maximum,
+                controlRange.Minimum,
+                controlRange.Maximum)
+        { }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="T:CSPID.Controller"/> class.
         /// </summary>
         /// <param name="minimumError">The minimum error.</param>
         /// <param name="maximumError">The maximum error.</param>
         /// <param name="minimumControl">The minimum control value.</param>
         /// <param name="maximumControl">The maximum control value.</param>
-        /// <param name="maximumStep">The maximum control value delta per cycle.</param>
         public PIDController(
             double minimumError,
             double maximumError,
             double minimumControl,
-            double maximumControl,
-            double maximumStep = double.MaxValue)
+            double maximumControl)
         {
-            if (maximumStep < 0)
-                throw new ArgumentOutOfRangeException($"Expected {nameof(maximumStep)} to be greater than or equal to 0");
-
             _errorRange = new Range<double>(minimumError, maximumError);
             _controlRange = new Range<double>(minimumControl, maximumControl);
-            _maximumStep = maximumStep;
         }
 
         /// <summary>
@@ -81,7 +103,7 @@ namespace CSPID
         /// </summary>
         /// <returns>The control variable value.</returns>
         /// <param name="error">The process variable error.</param>
-        /// <param name="elapsed">The time elapsed since the last control variable value was calculated.</param>
+        /// <param name="elapsed">The time elapsed since the last control value was calculated.</param>
         public double Next(double error, double elapsed)
         {
             double control;

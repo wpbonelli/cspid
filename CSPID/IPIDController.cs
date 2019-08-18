@@ -6,6 +6,12 @@
     public interface IPIDController
     {
         /// <summary>
+        /// Gets or sets the maximum control variable change per cycle.
+        /// </summary>
+        /// <value>The maximum control variable change per cycle.</value>
+        double MaximumStep { get; set; }
+
+        /// <summary>
         /// Gets or sets the proportional gain.
         /// </summary>
         /// <value>The proportional gain.</value>
