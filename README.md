@@ -20,7 +20,7 @@ You can also impose a `MaximumStep` (the largest permissible change between cont
 ```csharp
 // create a controller
 var controller = new PIDController(
-    errorRange: new Range<double>(-5, 5), // Range<T> models an inclusive range (soon to be obsolete with C#8!)
+    errorRange: new Range<double>(-5, 5), // Range<T> models an inclusive range
     controlRange: new Range<double>(0, 10))
 {
     MaximumStep = double.MaxValue,
