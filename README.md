@@ -1,10 +1,12 @@
-# CSPID
+CSPID (pronounced "speedy") is a C# PID (proportional-integral-derivative) controller targeting .NET Standard 2.0.
 
-CSPID (pronounced "speedy") is a C# PID (proportional-integral-derivative) controller targeting .NET Standard 2.0. You can find it on Nuget.org [here](https://www.nuget.org/packages/CSPID/).
+## Installation
+
+Clone the repo with `git clone https://github.com/w-bonelli/CSPID.git` or pull the package from [Nuget.org](https://www.nuget.org/packages/CSPID/) with PowerShell: `Install-Package CSPID`.
 
 ## Usage
 
-There's one class (`PIDController`) with one method (`double Next(double error, double elapsed`). CSPID doesn't care how you measure your error or the passage of time. To construct a controller, you must provide:
+There's one class: `PIDController`. It has one method: `double Next(double error, double elapsed = 1)`. CSPID doesn't care how you measure your error or the passage of time. To construct a controller, provide:
 
 - `errorRange`: the range you expect your error values to take
 - `controlRange`: the range of values your control variable may take
@@ -15,7 +17,7 @@ You can tune gain in real time:
 - `IntegralGain`
 - `DerivativeGain`
 
-You can also impose a `MaximumStep` (the largest permissible change between control values per cycle).
+You can also impose a `MaximumStep` (the largest permissible change between successive control values).
 
 ```csharp
 // create a controller
