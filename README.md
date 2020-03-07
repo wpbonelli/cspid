@@ -1,3 +1,12 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Contents**
+
+- [Installation](#installation)
+- [Usage](#usage)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 CSPID (pronounced "speedy") is a C# PID (proportional-integral-derivative) controller targeting .NET Standard 2.0.
 
 ## Installation
